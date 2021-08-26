@@ -20,6 +20,7 @@ function FCFS(disk, root) {
   console.log("");
   tempDisk.splice(tempDisk.indexOf(tempRoot), 1);
 }
+
 function SCAN(disk, root) {
   let totalSeek = 0;
   let tempDisk = disk;
@@ -53,6 +54,7 @@ function SCAN(disk, root) {
   console.log("");
   tempDisk.splice(tempDisk.indexOf(tempRoot), 1);
 }
+
 function C_SCAN(disk, root) {
   let totalSeek = 0;
   let tempDisk = disk;
