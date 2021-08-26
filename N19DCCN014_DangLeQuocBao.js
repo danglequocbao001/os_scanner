@@ -1,8 +1,5 @@
-// let disk = [176, 79, 34, 60, 92, 11, 41, 114];
-// let root = 50;
-
-let disk = [98, 183, 37, 122, 14, 124, 65, 67];
-let root = 53;
+const disk = [176, 79, 34, 60, 92, 11, 41, 114];
+const root = 50;
 
 console.log("Initial head position:", root);
 console.log("Request sequence:", disk + []);
@@ -10,78 +7,83 @@ console.log("");
 
 function FCFS(disk, root) {
   let totalSeek = 0;
-  disk.splice(0, 0, root);
-
-  for (let i = 0; i < disk.length; i++) {
-    if (disk[i + 1] == undefined) break;
-    else totalSeek += Math.abs(disk[i + 1] - disk[i]);
+  let tempDisk = disk;
+  let tempRoot = root;
+  tempDisk.unshift(tempRoot);
+  for (let i = 0; i < tempDisk.length; i++) {
+    if (tempDisk[i + 1] == undefined) break;
+    else totalSeek += Math.abs(tempDisk[i + 1] - tempDisk[i]);
   }
 
-  console.log("FCFS:", disk + []);
+  console.log("FCFS:", tempDisk + []);
   console.log("Total number of seek operations by FCFS:", totalSeek);
   console.log("");
+  tempDisk.splice(tempDisk.indexOf(tempRoot), 1);
 }
-
 function SCAN(disk, root) {
   let totalSeek = 0;
-  disk.splice(0, 0, root);
+  let tempDisk = disk;
+  let tempRoot = root;
+  tempDisk.unshift(tempRoot);
 
-  if (disk.indexOf(0) == -1) disk.splice(0, 0, 0);
+  if (tempDisk.indexOf(0) == -1) tempDisk.splice(0, 0, 0);
 
-  disk.sort(function (a, b) {
+  tempDisk.sort(function (a, b) {
     return a - b;
   });
 
   let head = [];
   let tail = [];
 
-  //scan the left part first if index of root <= mid number of disk array
-  for (let i = disk.indexOf(root); i >= 0; i--) {
-    head.push(disk[i]);
-    if (disk[i - 1] == undefined) {
-      totalSeek += disk[disk.indexOf(root) + 1];
+  for (let i = tempDisk.indexOf(tempRoot); i >= 0; i--) {
+    head.push(tempDisk[i]);
+    if (tempDisk[i - 1] == undefined) {
+      totalSeek += tempDisk[tempDisk.indexOf(tempRoot) + 1];
       continue;
-    } else totalSeek += disk[i] - disk[i - 1];
+    } else totalSeek += tempDisk[i] - tempDisk[i - 1];
   }
-  for (let i = disk.indexOf(root) + 1; i < disk.length; i++) {
-    tail.push(disk[i]);
-    if (disk[i + 1] == undefined) continue;
-    else totalSeek += disk[i + 1] - disk[i];
+  for (let i = tempDisk.indexOf(tempRoot) + 1; i < tempDisk.length; i++) {
+    tail.push(tempDisk[i]);
+    if (tempDisk[i + 1] == undefined) continue;
+    else totalSeek += tempDisk[i + 1] - tempDisk[i];
   }
-
+  head.splice(head.indexOf(0), 1);
   console.log("SCAN:", head + "," + tail);
   console.log("Total number of seek operations by SCAN:", totalSeek);
   console.log("");
+  tempDisk.splice(tempDisk.indexOf(tempRoot), 1);
 }
 function C_SCAN(disk, root) {
   let totalSeek = 0;
-  disk.splice(0, 0, root);
+  let tempDisk = disk;
+  let tempRoot = root;
+  tempDisk.unshift(tempRoot);
 
-  if (disk.indexOf(0) == -1) disk.splice(0, 0, 0);
+  if (tempDisk.indexOf(0) == -1) tempDisk.splice(0, 0, 0);
 
-  disk.sort(function (a, b) {
+  tempDisk.sort(function (a, b) {
     return a - b;
   });
 
   let head = [];
   let tail = [];
-
-  //scan the right part first if index of root > mid number of disk array
-  for (let i = disk.indexOf(root); i < disk.length; i++) {
-    head.push(disk[i]);
-    if (disk[i + 1] == undefined) {
-      totalSeek += disk[i] - disk[disk.indexOf(root) - 1];
+  for (let i = tempDisk.indexOf(tempRoot); i < tempDisk.length; i++) {
+    head.push(tempDisk[i]);
+    if (tempDisk[i + 1] == undefined) {
+      totalSeek += tempDisk[i] - tempDisk[tempDisk.indexOf(tempRoot) - 1];
       continue;
-    } else totalSeek += disk[i + 1] - disk[i];
+    } else totalSeek += tempDisk[i + 1] - tempDisk[i];
   }
-  for (let i = disk.indexOf(root) - 1; i >= 0; i--) {
-    tail.push(disk[i]);
-    if (disk[i - 1] == undefined) continue;
-    else totalSeek += disk[i] - disk[i - 1];
+  for (let i = tempDisk.indexOf(tempRoot) - 1; i >= 0; i--) {
+    tail.push(tempDisk[i]);
+    if (tempDisk[i - 1] == undefined) continue;
+    else totalSeek += tempDisk[i] - tempDisk[i - 1];
   }
+  tail.splice(tail.indexOf(0), 1);
   console.log("C-SCAN:", head + "," + tail);
   console.log("Total number of seek operations by C-SCAN:", totalSeek);
   console.log("");
+  tempDisk.splice(tempDisk.indexOf(tempRoot), 1);
 }
 
 FCFS(disk, root);
