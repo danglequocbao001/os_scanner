@@ -13,7 +13,6 @@ function FCFS(disk, root) {
     if (tempDisk[i + 1] == undefined) break;
     else totalSeek += Math.abs(tempDisk[i + 1] - tempDisk[i]);
   }
-
   console.log("FCFS:", tempDisk + []);
   console.log("Total number of seek operations by FCFS:", totalSeek);
   console.log("");
@@ -50,16 +49,12 @@ function SCAN(disk, root) {
   let totalSeek = 0;
   let tempDisk = disk.slice();
   tempDisk.unshift(root);
-
   if (tempDisk.indexOf(0) == -1) tempDisk.splice(0, 0, 0);
-
   tempDisk.sort(function (a, b) {
     return a - b;
   });
-
   let head = [];
   let tail = [];
-
   for (let i = tempDisk.indexOf(root); i >= 0; i--) {
     head.push(tempDisk[i]);
     if (tempDisk[i - 1] == undefined) {
@@ -82,13 +77,10 @@ function C_SCAN(disk, root) {
   let totalSeek = 0;
   let tempDisk = disk.slice();
   tempDisk.unshift(root);
-
   if (tempDisk.indexOf(0) == -1) tempDisk.splice(0, 0, 0);
-
   tempDisk.sort(function (a, b) {
     return a - b;
   });
-
   let head = [];
   let tail = [];
   for (let i = tempDisk.indexOf(root); i < tempDisk.length; i++) {
