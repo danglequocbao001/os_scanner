@@ -15,7 +15,7 @@ function FCFS(disk, root) {
   }
   console.log("FCFS:", tempDisk + []);
   console.log("Total number of seek operations by FCFS:", totalSeek);
-  console.log("");
+//   console.log("");
 }
 
 function SSTF(disk, root) {
@@ -42,7 +42,7 @@ function SSTF(disk, root) {
   }
   console.log("SSTF:", tempDisk + []);
   console.log("Total number of seek operations by SSTF:", totalSeek);
-  console.log("");
+//   console.log("");
 }
 
 function SCAN(disk, root) {
@@ -70,7 +70,7 @@ function SCAN(disk, root) {
   head.splice(head.indexOf(0), 1);
   console.log("SCAN:", head + "," + tail);
   console.log("Total number of seek operations by SCAN:", totalSeek);
-  console.log("");
+  console.log("");/
 }
 
 function C_SCAN(disk, root) {
@@ -98,7 +98,7 @@ function C_SCAN(disk, root) {
   tail.splice(tail.indexOf(0), 1);
   console.log("C-SCAN:", head + "," + tail);
   console.log("Total number of seek operations by C-SCAN:", totalSeek);
-  console.log("");
+//   console.log("");
 }
 
 FCFS(disk, root);
