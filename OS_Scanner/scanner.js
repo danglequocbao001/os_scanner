@@ -3,7 +3,7 @@ const root = 53;
 
 console.log("Initial head position:", root);
 console.log("Request sequence:", disk + []);
-console.log("");
+// console.log("");
 
 function FCFS(disk, root) {
   let totalSeek = 0;
