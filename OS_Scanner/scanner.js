@@ -95,7 +95,6 @@ function C_SCAN(disk, root) {
   console.log("C-SCAN:", head + "," + tail);
   console.log("Total number of seek operations by C-SCAN:", totalSeek);
 }
-
 FCFS(disk, root);
 SSTF(disk, root);
 SCAN(disk, root);
